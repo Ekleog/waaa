@@ -1,25 +1,44 @@
 [package]
-name = "waaaa"
+name = "waaa"
 version = "0.1.0"
 edition = "2021"
-description = "WebAssembly, Automatically Abstracted Away"
-repository = "https://github.com/Ekleog/waaaa"
-homepage = "https://github.com/Ekleog/waaaa"
-documentation = "https://docs.rs/waaaa"
+description = "WebAssembly, Abstracted Away"
+repository = "https://github.com/Ekleog/waaa"
+homepage = "https://github.com/Ekleog/waaa"
+documentation = "https://docs.rs/waaa"
 license = "MIT OR Apache-2.0"
 keywords = ["async", "api", "web", "wasm", "webassembly"]
-categories = ["api-bindings", "asynchronous", "development-tools::ffi", "wasm", "web-programming"]
+categories = [
+    "api-bindings",
+    "asynchronous",
+    "development-tools::ffi",
+    "wasm",
+    "web-programming",
+]
 
 [dependencies]
 anyhow = { version = "1.0", default-features = false, features = ["std"] }
-futures-util = { version = "0.3.30", default-features = false, features = ["sink"] }
+futures-util = { version = "0.3.30", default-features = false, features = [
+    "sink",
+] }
 web-time = { version = "1.0", default-features = false }
 
 [target.'cfg(not(all(target_arch = "wasm32", target_os = "unknown")))'.dependencies]
-tokio = { version = "1.36", default-features = false, features = ["net", "rt", "time"] }
-tokio-tungstenite = { version = "0.21.0", default-features = false, features = ["connect", "stream"] }
+tokio = { version = "1.36", default-features = false, features = [
+    "net",
+    "rt",
+    "time",
+] }
+tokio-tungstenite = { version = "0.21.0", default-features = false, features = [
+    "connect",
+    "stream",
+] }
 
 [target.'cfg(all(target_arch = "wasm32", target_os = "unknown"))'.dependencies]
-gloo-net = { version = "0.5.0", default-features = false, features = ["websocket"] }
-gloo-timers = { version = "0.3.0", default-features = false, features = ["futures"] }
+gloo-net = { version = "0.5.0", default-features = false, features = [
+    "websocket",
+] }
+gloo-timers = { version = "0.3.0", default-features = false, features = [
+    "futures",
+] }
 wasm-bindgen-futures = { version = "0.4.41", default-features = false }

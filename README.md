@@ -1,4 +1,4 @@
-# WebAssembly, Automatically Abstracted Away
+# WebAssembly, Abstracted Away
 
 This crate is a collection of small helpers, designed to help writing crates that work on both the web platform and native.
 
