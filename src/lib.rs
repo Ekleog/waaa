@@ -4,6 +4,7 @@
     warn(missing_docs)
 )]
 
+#[allow(unused_macros)]
 macro_rules! dispatch_inline_item {
     ( native: $native:item web: $web:item ) => {
         #[cfg(not(all(target_arch = "wasm32", target_os = "unknown")))]
@@ -13,8 +14,10 @@ macro_rules! dispatch_inline_item {
         $web
     };
 }
+#[allow(unused_imports)]
 use dispatch_inline_item;
 
+#[allow(unused_macros)]
 macro_rules! dispatch_inline_stmt {
     ( native: $native:stmt ; web: $web:stmt ; ) => {
         #[cfg(not(all(target_arch = "wasm32", target_os = "unknown")))]
@@ -24,6 +27,7 @@ macro_rules! dispatch_inline_stmt {
         $web;
     };
 }
+#[allow(unused_imports)]
 use dispatch_inline_stmt;
 
 macro_rules! dispatch_to_submodules {
@@ -40,12 +44,20 @@ macro_rules! dispatch_to_submodules {
 }
 use dispatch_to_submodules;
 
+#[cfg(feature = "time")]
 mod sleep;
-mod spawn;
-mod traits;
-mod websocket;
-
+#[cfg(feature = "time")]
 pub use sleep::*;
+
+#[cfg(feature = "spawn")]
+mod spawn;
+#[cfg(feature = "spawn")]
 pub use spawn::*;
+
+mod traits;
 pub use traits::*;
+
+#[cfg(feature = "websocket")]
+mod websocket;
+#[cfg(feature = "websocket")]
 pub use websocket::*;
